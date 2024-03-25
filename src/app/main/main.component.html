@@ -1,0 +1,34 @@
+<ng-container class="container">
+  <div>
+    <div class="input-container">
+      <input type="month" [(ngModel)]="selectedDate">
+      <button (click)="loadData()">Load Data</button>
+    </div>
+
+    <p class="error-message" *ngIf="noDateChosen">Будь ласка оберіть місяць</p>
+
+    <div *ngIf="array && array.length">
+      <h2>Данні за {{selectedDate}}</h2>
+      <table>
+        <thead>
+        <tr>
+          <th>Заголовок</th>
+          <th>Заголовок (EN)</th>
+          <th>Сума</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of array">
+          <td>{{item.txt}}</td>
+          <td>{{item.txten}}</td>
+          <td>{{item.value.toFixed(2)}}$</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="error-container" *ngIf="error">
+      <p class="error-message">Нема інформації за цей місяць</p>
+    </div>
+  </div>
+</ng-container>
